@@ -8,5 +8,5 @@ Simple encoder and decoder in Python. Ciphers available: Caesar Cipher, Atbash, 
 
 Todos os códigos para codificar e decodificar as cifras foram escritos do zero, sem copiar algoritmos prontos da internet.
 Tive dificuldade com cifras mais completas como Vigenere, mas o resultado final foi positivo.
-Inicialmente procurei fazer uma GUI com Qt, porém apesar de conseguir desenhar a interface no QtDesigner, não consegui escrever o código.
+Inicialmente procurei fazer uma GUI com Qt, porém apesar de conseguir desenhar a interface no QtDesigner, não consegui escrever o código devido a sua complexidade.
 Por conta disso, fiz de última hora uma interface extremamente simples com o PySimpleGUI.
