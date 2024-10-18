@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
         layout = [
             [
-                sg.Text('PieCoder', key='-LABEL_PIECODER-')
+                sg.Text('PyCoder', key='-LABEL_PYCODER-')
             ],
             [
                 sg.Text('Choose your Cipher: ', key='-LABEL_CHOOSE_CIPHER-'),
@@ -34,7 +34,7 @@ if __name__ == '__main__':
             ]
         ]
 
-        title = 'PieCoder'
+        title = 'PyCoder'
 
         window = sg.Window(title, layout, finalize=True)
 
