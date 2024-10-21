@@ -4,101 +4,81 @@ from A1Z26Coder import a1z26_encode, a1z26_decode
 from AtbashCoder import atbash_code
 from MorseCoder import morse_encode, morse_decode
 
-import PySimpleGUI as sg
-
-
 if __name__ == '__main__':
-    def create_main_window():
-        sg.theme('DarkGray14')
-
-        layout = [
-            [
-                sg.Text('PyCoder', key='-LABEL_PYCODER-')
-            ],
-            [
-                sg.Text('Choose your Cipher: ', key='-LABEL_CHOOSE_CIPHER-'),
-                sg.Combo(['A1Z26 Cipher', 'Atbash Cipher', 'Caesar Cipher', 'Morse Code', 'Vigenère Cipher'],
-                         key='-COMBO_CIPHERS-')
-            ],
-            [
-                sg.Text('Ciphertext Input: ', key='-LABEL_INPUT-'), sg.Multiline(size=(100, 10), key='-PLAINTEXT-')
-            ],
-            [
-                sg.Text('                 Key: '), sg.InputText(key='-KEY-')
-            ],
-            [
-                sg.Text('             Output: '), sg.Output(size=(100, 10), key='-CIPHERTEXT-')
-            ],
-            [
-                sg.Button('Encode', key='-BTN_ENCODE-'), sg.Button('Decode', key='-BTN_DECODE-')
-            ]
-        ]
-
-        title = 'PyCoder'
-
-        window = sg.Window(title, layout, finalize=True)
-
-        return window
-
-
-    window = create_main_window()
-
     while True:
-        event, values = window.read()
 
-        if event == sg.WIN_CLOSED:
-            break
-        elif event == '-BTN_ENCODE-':
-            if values['-COMBO_CIPHERS-'] == 'A1Z26 Cipher':
-                try:
-                    print(a1z26_encode(values['-PLAINTEXT-'].upper()))
-                except:
-                    print('Please, insert valid keys and characters.')
-            elif values['-COMBO_CIPHERS-'] == 'Atbash Cipher':
-                try:
-                    print(atbash_code(values['-PLAINTEXT-'].upper()))
-                except:
-                    print('Please, insert valid keys and characters.')
-            elif values['-COMBO_CIPHERS-'] == 'Caesar Cipher':
-                try:
-                    print(caesar_encode(int(values['-KEY-']), values['-PLAINTEXT-'].upper()))
-                except:
-                    print('Please, insert valid keys and characters.')
-            elif values['-COMBO_CIPHERS-'] == 'Morse Code':
-                try:
-                    print(morse_encode(values['-PLAINTEXT-'].upper()))
-                except:
-                    print('Please, insert valid keys and characters.')
-            elif values['-COMBO_CIPHERS-'] == 'Vigenère Cipher':
-                try:
-                    print(vigerene_encode(values['-KEY-'].upper(), values['-PLAINTEXT-'].upper()))
-                except:
-                    print('Please, insert valid keys and characters.')
-        elif event == '-BTN_DECODE-':
-            if values['-COMBO_CIPHERS-'] == 'A1Z26 Cipher':
-                try:
-                    print(a1z26_decode(values['-PLAINTEXT-']))
-                except:
-                    print('Please, insert valid keys and characters.')
-            elif values['-COMBO_CIPHERS-'] == 'Atbash Cipher':
-                try:
-                    print(atbash_code(values['-PLAINTEXT-']))
-                except:
-                    print('Please, insert valid keys and characters.')
-            elif values['-COMBO_CIPHERS-'] == 'Caesar Cipher':
-               try:
-                    print(caesar_decode(int(values['-KEY-']), values['-PLAINTEXT-']))
-               except:
-                   print('Please, insert valid keys and characters.')
-            elif values['-COMBO_CIPHERS-'] == 'Morse Code':
-                try:
-                    print(morse_decode(values['-PLAINTEXT-']))
-                except:
-                    print('Please, insert valid keys and characters.')
-            elif values['-COMBO_CIPHERS-'] == 'Vigenère Cipher':
-                try:
-                    print(vigerene_decode(values['-KEY-'], values['-PLAINTEXT-']))
-                except:
-                    print('Please, insert valid keys and characters.')
+        caesar = False
+        vigenere = False
+        a1z26 = False
+        atbash = False
+        morse = False
 
-    window.close()
+        cipher_option = input("1. Caesar Cipher\n2. Vigenere Cipher\n3. A1Z26\n4. Atbash Cipher\n5. "
+                              "Morse Code\n\nChoose your cipher: ")
+
+        match cipher_option:
+            case "1":
+                caesar = True
+            case "2":
+                vigenere = True
+            case "3":
+                a1z26 = True
+            case "4":
+                atbash = True
+            case "5":
+                morse = True
+            case _:
+                print("Invalid choice.\n")
+                continue
+
+        code_option = input("1. Encode\n2. Decode\n\nWould you like to encode or decode? ")
+
+        encode = False
+        decode = False
+
+        match code_option:
+            case "1":
+                encode = True
+            case "2":
+                decode = True
+            case _:
+                print("Invalid choice.\n")
+                continue
+
+        text = input("Enter the text: ")
+
+        if caesar:
+            key = input("Enter the key: ")
+            key = int(key)
+            if code_option == "1":
+                cipher_text = caesar_encode(text, key)
+                print("Output: ", cipher_text)
+            elif code_option == "2":
+                cipher_text = caesar_decode(text, key)
+                print("Output: ", cipher_text)
+        elif vigenere:
+            key = input("Enter the key: ")
+            if code_option == "1":
+                cipher_text = vigerene_encode(text, key)
+                print("Output: ", cipher_text)
+            elif code_option == "2":
+                cipher_text = vigerene_decode(text, key)
+                print("Output: ", cipher_text)
+        elif a1z26:
+            if code_option == "1":
+                cipher_text = a1z26_encode(text)
+                print("Output: ", cipher_text)
+            elif code_option == "2":
+                cipher_text = a1z26_decode(text)
+                print("Output: ", cipher_text)
+        elif atbash:
+            cipher_text = atbash_code(text)
+            print("Output: ", cipher_text)
+        elif morse:
+            if code_option == "1":
+                cipher_text = morse_encode(text)
+                print("Output: ", cipher_text)
+            elif code_option == "2":
+                cipher_text = morse_decode(text)
+                print("Output: ", cipher_text)
+        break
