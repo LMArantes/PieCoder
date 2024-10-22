@@ -9,7 +9,7 @@ def caesar_encode(key, plaintext):
         if i in alphabet:
             n = alphabet.index(i)
             lever = n + key
-            if lever > 26:
+            if lever >= 26:
                 lever -= 26
             ciphertext_list.append(alphabet[lever])
         else:

@@ -51,18 +51,18 @@ if __name__ == '__main__':
             key = input("Enter the key: ")
             key = int(key)
             if code_option == "1":
-                cipher_text = caesar_encode(text, key)
+                cipher_text = caesar_encode(key, text)
                 print("Output: ", cipher_text)
             elif code_option == "2":
-                cipher_text = caesar_decode(text, key)
+                cipher_text = caesar_decode(key, text)
                 print("Output: ", cipher_text)
         elif vigenere:
             key = input("Enter the key: ")
             if code_option == "1":
-                cipher_text = vigerene_encode(text, key)
+                cipher_text = vigerene_encode(key, text)
                 print("Output: ", cipher_text)
             elif code_option == "2":
-                cipher_text = vigerene_decode(text, key)
+                cipher_text = vigerene_decode(key, text)
                 print("Output: ", cipher_text)
         elif a1z26:
             if code_option == "1":
