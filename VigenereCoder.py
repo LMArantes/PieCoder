@@ -2,7 +2,7 @@ alphabet = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
 
 
-def vigerene_encode(key, plaintext):
+def vigenere_encode(key, plaintext):
     plaintext_length = len(plaintext)
     full_length_keyword_list = []
     ciphertext_list = []
@@ -27,7 +27,7 @@ def vigerene_encode(key, plaintext):
     return ciphertext_str
 
 
-def vigerene_decode(key, ciphertext):
+def vigenere_decode(key, ciphertext):
     ciphertext_length = len(ciphertext)
     full_length_keyword_list = []
     plaintext_list = []

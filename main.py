@@ -1,10 +1,11 @@
 from CaesarCoder import caesar_encode, caesar_decode
-from VigenereCoder import vigerene_encode, vigerene_decode
+from VigenereCoder import vigenere_encode, vigenere_decode
 from A1Z26Coder import a1z26_encode, a1z26_decode
 from AtbashCoder import atbash_code
 from MorseCoder import morse_encode, morse_decode
 
-if __name__ == '__main__':
+
+def coder_run():
     while True:
 
         caesar = False
@@ -50,35 +51,39 @@ if __name__ == '__main__':
         if caesar:
             key = input("Enter the key: ")
             key = int(key)
-            if code_option == "1":
+            if encode:
                 cipher_text = caesar_encode(key, text)
                 print("Output: ", cipher_text)
-            elif code_option == "2":
+            elif decode:
                 cipher_text = caesar_decode(key, text)
                 print("Output: ", cipher_text)
         elif vigenere:
             key = input("Enter the key: ")
-            if code_option == "1":
-                cipher_text = vigerene_encode(key, text)
+            if encode:
+                cipher_text = vigenere_encode(key, text)
                 print("Output: ", cipher_text)
-            elif code_option == "2":
-                cipher_text = vigerene_decode(key, text)
+            elif decode:
+                cipher_text = vigenere_decode(key, text)
                 print("Output: ", cipher_text)
         elif a1z26:
-            if code_option == "1":
+            if encode:
                 cipher_text = a1z26_encode(text)
                 print("Output: ", cipher_text)
-            elif code_option == "2":
+            elif decode:
                 cipher_text = a1z26_decode(text)
                 print("Output: ", cipher_text)
         elif atbash:
             cipher_text = atbash_code(text)
             print("Output: ", cipher_text)
         elif morse:
-            if code_option == "1":
+            if encode:
                 cipher_text = morse_encode(text)
                 print("Output: ", cipher_text)
-            elif code_option == "2":
+            elif decode:
                 cipher_text = morse_decode(text)
                 print("Output: ", cipher_text)
         break
+
+
+if __name__ == '__main__':
+    coder_run()
